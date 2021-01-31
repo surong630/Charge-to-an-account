@@ -1,26 +1,20 @@
 <template>
-  <div class="content-wrapper">
-    <div class="content">
-      Label
+    <div>
+      <Layout>Label</Layout>
     </div>
-    <Nav/>
-  </div>
 </template>
 
 <script>
-  export default {
-    
-  }
+export default {};
 </script>
 
 <style lang="scss" scoped>
-.content-wrapper{
+.content-wrapper {
   display: flex;
-  flex-direction: column;
 }
-.content{
-  border: 1px solid red;
+.content {
   height: 100vh;
+  border: 1px solid red;
   overflow: hidden;
 }
 </style>
