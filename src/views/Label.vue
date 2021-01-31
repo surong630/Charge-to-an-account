@@ -1,6 +1,9 @@
 <template>
-  <div>
-    Label
+  <div class="content-wrapper">
+    <div class="content">
+      Label
+    </div>
+    <Nav/>
   </div>
 </template>
 
@@ -11,5 +14,13 @@
 </script>
 
 <style lang="scss" scoped>
-
+.content-wrapper{
+  display: flex;
+  flex-direction: column;
+}
+.content{
+  border: 1px solid red;
+  height: 100vh;
+  overflow: hidden;
+}
 </style>
