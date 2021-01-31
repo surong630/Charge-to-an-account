@@ -20,7 +20,6 @@
     height: 100vh;
   }
   .content {
-    border: 1px solid red;
     flex: 1;
   }
 </style>

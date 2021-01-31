@@ -1,39 +1,39 @@
 <template>
-  <div id="nav">
-    <router-link to="/money">
-    <svg>
-      <use xlink:href="#money"></use>
-    </svg>
-    Money
+  <div class="nav">
+    <router-link class="item" to="/money">
+      <Icon name="money" />
+      记账
     </router-link>
-    <router-link to="/Label">
-    <svg>
-      <use xlink:href="#label"></use>
-    </svg>
-    Label
+    <router-link class="item" to="/Label">
+      <Icon name="label" />
+      标签
     </router-link>
-    <router-link to="/Statistics">
-        <svg>
-      <use xlink:href="#statistics"></use>
-    </svg>
-    Statistics</router-link>
+    <router-link class="item" to="/Statistics">
+      <Icon name="statistics" />
+      图标</router-link
+    >
   </div>
 </template>
 
 <script lang="ts">
-const importAll = (requireContext: __WebpackModuleApi.RequireContext) => {
-  requireContext.keys().forEach(requireContext);
-}
-try{
-  importAll(require.context('../assets/iconfont', true, /\.svg$/))
-}catch(err){
-  console.log(err);
-}
 export default {};
 </script>
 
 <style lang="scss" scoped>
-#nav{
-  border: 1px solid green;
+.nav {
+  display: flex;
+  justify-content: space-around;
+  box-shadow: 0 0 4px rgba(0,0,0,.6);
+  .item {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-size: 12px;
+  }
+  .icon {
+    width: 30px;
+    height: 30px;
+  }
 }
 </style>
