@@ -5,24 +5,14 @@
 </template>
 
 <style lang="scss">
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
+// 去除默认样式
+@import '~@/assets/style/reset.scss';
+@import '~@/assets/style/base.scss';
+body {
+  line-height: 1.5;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  color: #2c3e50;
-}
-.nav {
-  a {
-    text-decoration: none;
-    color: black;
-    &.router-link-exact-active {
-      color: red;
-    }
-  }
+  color: #333333;
+  font-family: $font-hei;
 }
 </style>

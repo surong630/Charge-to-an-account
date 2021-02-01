@@ -1,0 +1,7 @@
+diff a/src/components/Nav.vue b/src/components/Nav.vue	(rejected hunks)
+@@ -7 +7 @@
+-    <router-link class="item" to="/Label"active-class="selected">
++    <router-link class="item" to="/Label" active-class="selected">
+@@ -11 +11 @@
+-    <router-link class="item" to="/Statistics"active-class="selected">
++    <router-link class="item" to="/Statistics" active-class="selected">

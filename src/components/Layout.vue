@@ -14,11 +14,13 @@
 </script>
 
 <style lang="scss" scoped>
+// 容器flex
   .content-wrapper {
     display: flex;
     flex-direction: column;
     height: 100vh;
   }
+  // 让内容撑满最多
   .content {
     flex: 1;
   }

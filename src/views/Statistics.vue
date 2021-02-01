@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div class="statistics">
       <Layout>Statistics</Layout>
     </div>
 </template>
@@ -9,4 +9,8 @@ export default {};
 </script>
 
 <style lang="scss" scoped>
+@import '~@/assets/style/base.scss';
+.statistics {
+  color: $red;
+}
 </style>
