@@ -1,5 +1,5 @@
 <template>
-  <div class="content-wrapper">
+  <div class="layout-wrapper">
     <div class="content">
       <slot></slot>
     </div>
@@ -9,19 +9,20 @@
 
 <script>
   export default {
-    
   }
 </script>
 
 <style lang="scss" scoped>
 // 容器flex
-  .content-wrapper {
+  .layout-wrapper {
     display: flex;
     flex-direction: column;
     height: 100vh;
   }
   // 让内容撑满最多
   .content {
+    display: flex;
+    flex-direction: column-reverse;
     flex: 1;
   }
 </style>

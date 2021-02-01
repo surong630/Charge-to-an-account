@@ -10,7 +10,5 @@ export default {};
 
 <style lang="scss" scoped>
 @import '~@/assets/style/base.scss';
-.statistics {
-  color: $red;
-}
+
 </style>
