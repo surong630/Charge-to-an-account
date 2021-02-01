@@ -1,12 +1,16 @@
 <template>
   <div>
-     <Layout>Money</Layout>
+     <Layout>{{name}}</Layout>
   </div>
 </template>
 
 <script>
   export default {
-    
+    data() {
+      return {
+        name: 'Moneys'
+      }
+    },
   }
 </script>
 

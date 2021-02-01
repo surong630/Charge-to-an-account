@@ -24,6 +24,8 @@ export default {};
   display: flex;
   justify-content: space-around;
   box-shadow: 0 0 4px rgba(0,0,0,.6);
+  padding: 1.5px 0 ;
+  font-size: 12px;
   .item {
     display: flex;
     flex-direction: column;
