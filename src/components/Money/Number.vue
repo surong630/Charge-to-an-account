@@ -33,7 +33,9 @@
       }
       const target = event.target as HTMLButtonElement;
       const input = target.textContent!;
+      // 判断开头是否为0
       if(this.output.indexOf('0') === 0) {
+        // 判断点击是否为.
         if(input === '.') {
           if(this.output.indexOf('.') >=0) {
             return

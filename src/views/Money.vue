@@ -1,9 +1,9 @@
 <template>
   <Layout>
     <number></number>
-    <types :xxx="58"></types>
+    <types></types>
     <notes></notes>
-    <tags></tags>
+    <tags :tagList.sync="tagsList"></tags>
   </Layout>
 </template>
 
@@ -17,6 +17,7 @@ export default {
   data() {
     return {
       name: "Moneys",
+      tagsList: ['衣','食','住','行']
     };
   },
 };

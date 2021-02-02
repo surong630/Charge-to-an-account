@@ -2,20 +2,43 @@
     <!-- 标签 -->
     <div class="tags">
       <div class="new">
-        <button>新增标签</button>
+        <button @click="addTag">新增标签</button>
       </div>
       <ul class="current">
-        <li>衣</li>
-        <li>食</li>
-        <li>住</li>
-        <li>行</li>
+        <li 
+        v-for="item in tagList"
+        :key="item"
+        @click="toggle(item)"
+        :class="{actived:currentList.indexOf(item) >=0}">
+          {{item}}
+        </li>
       </ul>
     </div>
 </template>
 
-<script>
-  export default {
-    
+<script lang="ts">
+  import Vue from 'vue';
+  import { Component, Prop } from 'vue-property-decorator'
+  @Component
+  export default class Tags extends Vue {
+    @Prop() tagList: string[] | undefined;
+    currentList: string[] = [];
+    toggle(item: string) {
+      const index = this.currentList.indexOf(item);
+      if(index<0) {
+        this.currentList.push(item)
+      }else {
+        this.currentList.splice(index, 1)
+      }
+    }
+    addTag() {
+      let tag = window.prompt('请输入你需要添加的标签');
+      if(tag === '') {
+        tag = window.prompt('请输入正确的标签');
+      }else if(this.tagList) {
+        this.$emit('update:tagList', [...this.tagList,tag])
+      }
+    }
   }
 </script>
 
@@ -42,6 +65,10 @@
       margin-right: 12px;
       margin-top: 5px;
       padding: 0 16px;
+      &.actived {
+        background: darken(green, .4);
+        color: white;
+      }
     }
   }
   .new {
