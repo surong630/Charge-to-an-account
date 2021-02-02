@@ -1,7 +1,7 @@
 <template>
   <Layout>
     <number></number>
-    <types></types>
+    <types :xxx="58"></types>
     <notes></notes>
     <tags></tags>
   </Layout>

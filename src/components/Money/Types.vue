@@ -13,14 +13,14 @@
   import { Component } from 'vue-property-decorator'
   @Component
   export default class Types extends Vue{
-    type = '-'
+    type = '-';
+    // 改变type值
     selectType(type: string) {
       if(type !== '-' && type !== '+') {
         throw new Error('传入的有误')
       }
       this.type = type
     }
-
   }
 </script>
 
