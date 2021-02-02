@@ -34,8 +34,17 @@
       const target = event.target as HTMLButtonElement;
       const input = target.textContent!;
       if(this.output.indexOf('0') === 0) {
-        this.output = input;
-        return;
+        if(input === '.') {
+          if(this.output.indexOf('.') >=0) {
+            return
+          }
+        }else if(this.output.indexOf('.') === 1) {
+          this.output += input;
+          return;
+        }else{
+          this.output = input;
+          return;
+        }
       }
       if(input === '.') {
         if(this.output.indexOf('.') >=0) {
