@@ -23,9 +23,10 @@
 
 <script lang="ts">
   import Vue from 'vue'
-  import {Component} from 'vue-property-decorator'
+  import {Component, Prop} from 'vue-property-decorator'
   @Component // 装饰器
   export default class NumberPad extends Vue{
+    @Prop(String) number?: string;
     output =  '0';
     changeOutput(event: MouseEvent) {
       if(this.output.length === 16) {
@@ -65,6 +66,10 @@
     }
     empty() {
       this.output = '0';
+    }
+    ok () {
+      this.$emit('update:number', this.output);
+      this.output = '0'
     }
   }
 </script>

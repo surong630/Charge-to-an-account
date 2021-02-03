@@ -30,6 +30,7 @@
       }else {
         this.currentList.splice(index, 1)
       }
+      this.$emit('update:check', this.currentList)
     }
     addTag() {
       let tag = window.prompt('请输入你需要添加的标签');
