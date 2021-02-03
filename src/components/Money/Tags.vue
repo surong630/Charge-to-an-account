@@ -34,7 +34,7 @@
     }
     addTag() {
       let tag = window.prompt('请输入你需要添加的标签');
-      if(tag === '') {
+      if(tag === '' || tag === null) {
         tag = window.prompt('请输入正确的标签');
       }else if(this.tagList) {
         this.$emit('update:tagList', [...this.tagList,tag])

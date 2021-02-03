@@ -1,7 +1,6 @@
 <template>
 <div>
   <Layout>
-    {{newtagsList}}
     <number :number.sync="source.num" @update:number="onnumberChange"></number>
     <types :type.sync="source.type"></types>
     <notes @update:value="onvalueChange"></notes>
@@ -17,11 +16,14 @@ import Number from '@/components/Money/Number.vue';
 import Tags from '@/components/Money/Tags.vue';
 import Types from '@/components/Money/Types.vue';
 import { extend } from 'vue/types/umd';
+const model = require('@/model.ts').default
+console.log(model);
 type Source = {
   tagsList: string[];
   type: string;
   num: string;
   notes: string;
+  data?: Date;
 }
 @Component({ components:{
   Notes, Number, Tags, Types
@@ -33,9 +35,10 @@ export default class Money extends Vue{
     tagsList: [],
     type: '-',
     num: '0',
-    notes: ''
+    notes: '',
+    data: new Date()
   }
-  newtagsList: Source[] = []
+  newtagsList: Source[] = model.fetch()
   ontagsListChanged(val: []) {
     this.source.tagsList = val
   }
@@ -43,12 +46,12 @@ export default class Money extends Vue{
     this.source.notes = val
   }
   onnumberChange() {
-    const newSource = JSON.parse(JSON.stringify(this.source))
+    const newSource = model.clone(this.source)
     this.newtagsList.push(newSource)
   }
   @Watch('newtagsList')
   onnewtagsListchange() {
-    localStorage.setItem('xxx', JSON.stringify(this.newtagsList))
+    model.save(this.newtagsList)
   }
 }
 </script>
