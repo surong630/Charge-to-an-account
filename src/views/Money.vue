@@ -1,7 +1,7 @@
 <template>
   <Layout>
     <number></number>
-    <types></types>
+    <types :type.sync="type"></types>
     <notes></notes>
     <tags :tagList.sync="tagsList"></tags>
   </Layout>
@@ -17,9 +17,13 @@ export default {
   data() {
     return {
       name: "Moneys",
-      tagsList: ['衣','食','住','行']
+      tagsList: ['衣','食','住','行'],
+      type: '-'
     };
   },
+  updated() {
+    console.log(this.type);
+  }
 };
 </script>
 

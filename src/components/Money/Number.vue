@@ -14,7 +14,7 @@
         <button @click="changeOutput">7</button>
         <button @click="changeOutput">8</button>
         <button @click="changeOutput">9</button>
-        <button class="ok">OK</button>
+        <button @click="ok" class="ok">OK</button>
         <button @click="changeOutput" class="zero">0</button>
         <button @click="changeOutput">.</button>
       </div>
@@ -88,6 +88,7 @@
       float: left;
       width: 25%;
       height: 64px;
+      color: black;
       &.zero {
         width: 25 * 2%;
       }

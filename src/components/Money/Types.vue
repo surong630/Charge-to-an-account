@@ -10,16 +10,16 @@
 
 <script lang="ts">
   import Vue from 'vue'
-  import { Component } from 'vue-property-decorator'
+  import { Component,Prop } from 'vue-property-decorator'
   @Component
   export default class Types extends Vue{
-    type = '-';
+    @Prop(String) type?: string;
     // 改变type值
-    selectType(type: string) {
-      if(type !== '-' && type !== '+') {
+    selectType(value: string) {
+      if(value !== '-' && value !== '+') {
         throw new Error('传入的有误')
       }
-      this.type = type
+      this.$emit('update:type', value)
     }
   }
 </script>
