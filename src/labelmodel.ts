@@ -5,7 +5,7 @@ type datas = {
 }
 type TagListModel = {
   data: datas[];
-  fetch: () => string[];
+  fetch: () => Record<string, any>[];
   create: (name: string) => 'success' | 'duplicated';
   save: () => void;
 }
