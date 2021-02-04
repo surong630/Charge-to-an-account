@@ -1,6 +1,6 @@
 <template>
 <div>
-  <Layout>
+  <Layout classFix="money">
     <number :number.sync="source.num" @update:number="onnumberChange"></number>
     <types :type.sync="source.type"></types>
     <notes @update:value="onvalueChange"></notes>
@@ -15,9 +15,8 @@ import Notes from '@/components/Money/Notes.vue';
 import Number from '@/components/Money/Number.vue';
 import Tags from '@/components/Money/Tags.vue';
 import Types from '@/components/Money/Types.vue';
-import { extend } from 'vue/types/umd';
-const model = require('@/model.ts').default
-console.log(model);
+const newtagsListmodel = require('@/newtagsListmodel.ts').default
+const labelmodel = require('@/labelmodel.ts').default
 type Source = {
   tagsList: string[];
   type: string;
@@ -30,7 +29,7 @@ type Source = {
 } })
 
 export default class Money extends Vue{
-  tagsList =  ['衣','食','住','行']
+  tagsList =  labelmodel.fetch()
   source: Source = {
     tagsList: [],
     type: '-',
@@ -38,7 +37,7 @@ export default class Money extends Vue{
     notes: '',
     data: new Date()
   }
-  newtagsList: Source[] = model.fetch()
+  newtagsList: Source[] = newtagsListmodel.fetch()
   ontagsListChanged(val: []) {
     this.source.tagsList = val
   }
@@ -46,16 +45,17 @@ export default class Money extends Vue{
     this.source.notes = val
   }
   onnumberChange() {
-    const newSource = model.clone(this.source)
+    const newSource = newtagsListmodel.clone(this.source)
     this.newtagsList.push(newSource)
   }
   @Watch('newtagsList')
   onnewtagsListchange() {
-    model.save(this.newtagsList)
+    newtagsListmodel.save(this.newtagsList)
   }
 }
 </script>
 
 <style lang="scss" scoped>
 @import "~@/assets/style/base.scss";
+
 </style>

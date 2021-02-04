@@ -15,8 +15,9 @@
   @Component
   export default class Notes extends Vue {
     value = '';
+    // 监听值变化 传回去
     @Watch('value')
-    onvalueChange(val) {
+    onvalueChange(value) {
       this.$emit('update:value', this.value)
     }
   }

@@ -14,5 +14,6 @@ body {
   -moz-osx-font-smoothing: grayscale;
   color: #333333;
   font-family: $font-hei;
+  background: #F5F5F5;
 }
 </style>

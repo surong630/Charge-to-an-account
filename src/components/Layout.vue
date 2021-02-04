@@ -1,6 +1,6 @@
 <template>
   <div class="layout-wrapper">
-    <div class="content">
+    <div class="content" :class="classFix">
       <slot></slot>
     </div>
     <Nav/>
@@ -9,6 +9,7 @@
 
 <script>
   export default {
+    props:['classFix']
   }
 </script>
 
@@ -19,8 +20,13 @@
     flex-direction: column;
     height: 100vh;
   }
-  // 让内容撑满最多
   .content {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+  }
+  // 让内容撑满最多
+  .money {
     display: flex;
     flex-direction: column-reverse;
     flex: 1;

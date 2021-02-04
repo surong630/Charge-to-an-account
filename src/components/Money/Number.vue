@@ -28,6 +28,7 @@
   export default class NumberPad extends Vue{
     @Prop(String) number?: string;
     output =  '0';
+    // 监听点击
     changeOutput(event: MouseEvent) {
       if(this.output.length === 16) {
         return
@@ -56,6 +57,7 @@
       }
       this.output += input;
     }
+    // 删除
     del(){
       if(this.output.length>0) {
         this.output = this.output.substring(0,this.output.length-1)
@@ -64,10 +66,12 @@
         }
       }
     }
+    // 清空
     empty() {
       this.output = '0';
     }
     ok () {
+      // 传值回去
       this.$emit('update:number', this.output);
       this.output = '0'
     }
