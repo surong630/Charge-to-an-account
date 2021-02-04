@@ -7,10 +7,10 @@
       <ul class="current">
         <li 
         v-for="item in tagList"
-        :key="item"
+        :key="item.id"
         @click="toggle(item)"
         :class="{actived:currentList.indexOf(item) >=0}">
-          {{item}}
+          {{item.name}}
         </li>
       </ul>
     </div>

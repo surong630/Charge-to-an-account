@@ -1,8 +1,8 @@
 <template>
   <Layout>
     <ul class="label-wrapper">
-      <li v-for="tag in tags" :key="tag" class="item">
-        <span>{{tag}}</span>
+      <li v-for="tag in tags" :key="tag.id" class="item">
+        <span>{{tag.name}}</span>
         <Icon name="right"></Icon>
       </li>
     </ul>
@@ -15,10 +15,11 @@
 <script lang="ts">
 import { Component, Vue } from "vue-property-decorator";
 const labelmodel = require('@/labelmodel.ts').default
+labelmodel.fetch()
 @Component
 
 export default class Label extends Vue {
-  tags = labelmodel.fetch()
+  tags = labelmodel.data
   createTag() {
     const name = window.prompt('请输入标签名')
     if(name) {
