@@ -1,3 +1,5 @@
+import createId from '@/lib/createId';
+
 const localStorageKey = 'tagList';
 type datas = {
   id: string;
@@ -9,19 +11,20 @@ type TagListModel = {
   create: (name: string) => 'success' | 'duplicated';
   save: () => void;
   update: (id: string,name: string) => 'success' | 'duplicated';
-  remove: () => 'success';
+  remove: (id: string) => 'success';
 }
 const model: TagListModel = {
   data: [],
   // 判断有无,是否存储
   create(name: string) {
+    const id = createId().toString()
     const names = this.data.map(i => {
       return i.name
     })
     if(names.indexOf(name) >=0) {
       return 'duplicated'
     }
-    this.data.push({id:name, name: name})
+    this.data.push({id, name: name})
     this.save()
     return 'success'
   },

@@ -19,14 +19,13 @@
 <script lang="ts">
   import Vue from 'vue';
   import { Component, Prop } from 'vue-property-decorator'
-  const labelmodel = require('@/labelmodel').default
+  const labelmodel = require('@/models/labelmodel').default
   console.log(labelmodel);
   
   @Component
   export default class Tags extends Vue {
     @Prop() tagList: string[] | undefined;
     currentList: string[] = [];
-    currentlabelmodel = labelmodel
     // 是否选中标签
     toggle(item: string) {
       const index = this.currentList.indexOf(item);
@@ -44,7 +43,8 @@
         tag = window.prompt('请输入正确的标签');
       }else if(this.tagList) {
         // 将tag存入到localStorage中
-        this.currentlabelmodel.create(tag)
+      this.$emit('update:dataSource',
+          [...this.tagList, name]);
       }
     }
   }

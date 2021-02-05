@@ -15,7 +15,7 @@
 <script lang="ts">
 import { Component, Vue } from "vue-property-decorator";
 import TagButton from '@/components/TagButton.vue'
-const labelmodel = require('@/labelmodel.ts').default
+const labelmodel = require('@/models/labelmodel.ts').default
 labelmodel.fetch()
 @Component({
   components: {TagButton}

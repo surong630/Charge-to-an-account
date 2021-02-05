@@ -17,8 +17,8 @@ import Notes from '@/components/Money/Notes.vue';
 import Number from '@/components/Money/Number.vue';
 import Tags from '@/components/Money/Tags.vue';
 import Types from '@/components/Money/Types.vue';
-const newtagsListmodel = require('@/newtagsListmodel.ts').default
-const labelmodel = require('@/labelmodel.ts').default
+const newtagsListmodel = require('@/models/newtagsListmodel.ts').default
+const labelmodel = require('@/models/labelmodel.ts').default
 type Source = {
   tagsList: string[];
   type: string;
