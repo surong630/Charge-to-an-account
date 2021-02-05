@@ -43,6 +43,7 @@
       if(tag === '' || tag === null) {
         tag = window.prompt('请输入正确的标签');
       }else if(this.tagList) {
+        // 将tag存入到localStorage中
         this.currentlabelmodel.create(tag)
       }
     }

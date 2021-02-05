@@ -6,7 +6,7 @@
       <span class="right"></span>
     </div>
     <div class="notes-wrapper">
-      <Notes name="标签名" placeholder="请输入标签名"></Notes>
+      <Notes :value="tag.name" name="标签名" placeholder="请输入标签名"></Notes>
     </div>
     <div class="button-wrapper">
       <tag-button>删除标签</tag-button>
@@ -26,6 +26,7 @@
     }
   })
   export default class EditLabel extends Vue {
+    tag?: {id: string;name: string} = undefined
     created() {
       // 找到localStorage中是否有id,没有就跳转到404
       const id = this.$route.params.id
@@ -34,7 +35,7 @@
       const tag = tags.filter(t => {return t.id === id}
       )[0]
       if(tag) {
-        console.log(tag);
+        this.tag = tag
       }else {
         this.$router.replace('/404')
       }

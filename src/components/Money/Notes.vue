@@ -14,7 +14,7 @@
   import { Component,Watch,Prop } from 'vue-property-decorator';
   @Component
   export default class Notes extends Vue {
-    value = '';
+    @Prop() value!: string;
     @Prop() name!: string;
     @Prop() placeholder!: string;
     // 监听值变化 传回去
