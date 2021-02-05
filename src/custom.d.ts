@@ -7,6 +7,7 @@ type Source = {
 }
 interface Window {
   tagList: datas[];
+  createTag: (name: string) => void; 
 }
 type datas = {
   id: string;

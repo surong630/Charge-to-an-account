@@ -12,6 +12,14 @@ Vue.component('Nav', Nav)
 Vue.component('Layout', Layout)
 Vue.component('Icon', Icon)
 window.tagList = labelmodel.fetch()
+window.createTag = (name: string) => {
+  const message = labelmodel.create(name)
+      if(message === 'duplicated') {
+        window.alert('重复了大哥')
+      }else if(message === 'success') {
+        window.alert('成功了')
+      }
+}
 new Vue({
   router,
   store,

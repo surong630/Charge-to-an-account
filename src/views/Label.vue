@@ -27,12 +27,7 @@ export default class Label extends Vue {
     // 重复不添加
     const name = window.prompt('请输入标签名')
     if(name) {
-      const message = labelmodel.create(name)
-      if(message === 'duplicated') {
-        window.alert('重复了大哥')
-      }else if(message === 'success') {
-        window.alert('成功了')
-      }
+      window.createTag(name)
     }
   }
 }
