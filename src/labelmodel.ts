@@ -11,6 +11,7 @@ type TagListModel = {
 }
 const model: TagListModel = {
   data: [],
+  // 判断有无,是否存储
   create(name: string) {
     const names = this.data.map(i => {
       return i.name
@@ -22,9 +23,11 @@ const model: TagListModel = {
     this.save()
     return 'success'
   },
+  // 存到localStorage
   save () {
     localStorage.setItem(localStorageKey, JSON.stringify(this.data))
   },
+  // 从localStorage取出来 放到data中
   fetch() {
     this.data = JSON.parse(localStorage.getItem(localStorageKey) || '[]')
     return this.data

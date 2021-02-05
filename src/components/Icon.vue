@@ -5,7 +5,7 @@
 </template>
 
 <script lang="ts">
-// 引入所以svg
+// 引入所有svg
 const importAll = (requireContext: __WebpackModuleApi.RequireContext) => {
   requireContext.keys().forEach(requireContext);
 }

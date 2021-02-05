@@ -7,20 +7,24 @@
       </router-link>
     </div>
     <div class="createTag-wrapper">
-      <button @click="createTag" class="createTag">添加标签</button>
+      <TagButton @click.native="createTag">添加标签</TagButton>
     </div>
   </Layout>
 </template>
 
 <script lang="ts">
 import { Component, Vue } from "vue-property-decorator";
+import TagButton from '@/components/TagButton.vue'
 const labelmodel = require('@/labelmodel.ts').default
 labelmodel.fetch()
-@Component
+@Component({
+  components: {TagButton}
+})
 
 export default class Label extends Vue {
   tags = labelmodel.data
   createTag() {
+    // 重复不添加
     const name = window.prompt('请输入标签名')
     if(name) {
       const message = labelmodel.create(name)
@@ -55,16 +59,8 @@ export default class Label extends Vue {
     }
   }
 }
-.createTag {
-  height: 40px;
-  width: 98px;
-  background: #767676;
-  border-radius: 4px;
-  color: white;
-  padding: 9px 16px;
-  &-wrapper {
+.createTag-wrapper {
     text-align: center;
     margin-top: 44-15px;
   }
-}
 </style>

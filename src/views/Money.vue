@@ -3,7 +3,9 @@
   <Layout classFix="money">
     <number :number.sync="source.num" @update:number="onnumberChange"></number>
     <types :type.sync="source.type"></types>
-    <notes @update:value="onvalueChange"></notes>
+    <div class="formNotes">
+      <notes name="备注" palceholder="在这里添加备注" @update:value="onvalueChange"></notes>
+    </div>
     <tags :tagList.sync="tagsList" @update:check="ontagsListChanged"></tags>
   </Layout>
 </div>
@@ -24,6 +26,7 @@ type Source = {
   notes: string;
   data?: Date;
 }
+
 @Component({ components:{
   Notes, Number, Tags, Types
 } })
@@ -52,10 +55,13 @@ export default class Money extends Vue{
   onnewtagsListchange() {
     newtagsListmodel.save(this.newtagsList)
   }
+  // 上面的都是处理ok后的数据的
 }
 </script>
 
 <style lang="scss" scoped>
 @import "~@/assets/style/base.scss";
-
+.formNotes {
+  padding: 8px 0;
+}
 </style>

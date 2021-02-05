@@ -1,22 +1,39 @@
 <template>
   <Layout>
-    编辑
+    <div class="icon-wrapper">
+      <Icon class="left" name="left"></Icon>
+      <span class="edit">编辑标签</span>
+      <span class="right"></span>
+    </div>
+    <div class="notes-wrapper">
+      <Notes name="标签名" placeholder="请输入标签名"></Notes>
+    </div>
+    <div class="button-wrapper">
+      <tag-button>删除标签</tag-button>
+    </div>
   </Layout>
 </template>
 
 <script lang="ts">
   import {Vue, Component} from 'vue-property-decorator'
+  import TagButton from '@/components/TagButton.vue'
+  import Notes from '@/components/Money/Notes.vue'
   const labelmodel = require('@/labelmodel').default
-  @Component
+  @Component({
+    components: {
+      TagButton,
+      Notes
+    }
+  })
   export default class EditLabel extends Vue {
     created() {
+      // 找到localStorage中是否有id,没有就跳转到404
       const id = this.$route.params.id
       labelmodel.fetch()
       const tags = labelmodel.data
-      console.log(tags);
       const tag = tags.filter(t => {return t.id === id}
-      )
-      if(tag.length > 0) {
+      )[0]
+      if(tag) {
         console.log(tag);
       }else {
         this.$router.replace('/404')
@@ -26,5 +43,31 @@
 </script>
 
 <style lang="scss" scoped>
-
+.icon-wrapper {
+  display: flex;
+  align-items: center;
+  height: 48px;
+  justify-content: space-between;
+  background: white;
+  padding-left: 17px;
+  .left {
+    height: 20px;
+    width: 20px;
+  }
+  .right {
+    height: 20px;
+    width: 20px;
+  }
+}
+.notes-wrapper {
+  margin-top: 9px;
+  .notes{
+    background: white;
+  }
+}
+.button-wrapper{
+  display: flex;
+  justify-content: center;
+  margin-top: 30px;
+}
 </style>

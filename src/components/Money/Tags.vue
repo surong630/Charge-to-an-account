@@ -19,10 +19,15 @@
 <script lang="ts">
   import Vue from 'vue';
   import { Component, Prop } from 'vue-property-decorator'
+  const labelmodel = require('@/labelmodel').default
+  console.log(labelmodel);
+  
   @Component
   export default class Tags extends Vue {
     @Prop() tagList: string[] | undefined;
     currentList: string[] = [];
+    currentlabelmodel = labelmodel
+    // 是否选中标签
     toggle(item: string) {
       const index = this.currentList.indexOf(item);
       if(index<0) {
@@ -32,12 +37,13 @@
       }
       this.$emit('update:check', this.currentList)
     }
+    // 新增标签
     addTag() {
       let tag = window.prompt('请输入你需要添加的标签');
       if(tag === '' || tag === null) {
         tag = window.prompt('请输入正确的标签');
       }else if(this.tagList) {
-        this.$emit('update:tagList', [...this.tagList,tag])
+        this.currentlabelmodel.create(tag)
       }
     }
   }
@@ -52,6 +58,7 @@
   display: flex;
   flex-direction: column-reverse;
   flex: 1;
+  background: white;
   .current {
     $h: 24px;
     $w: 48px;
