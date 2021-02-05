@@ -1,0 +1,4 @@
+diff a/src/custom.d.ts b/src/custom.d.ts	(rejected hunks)
+@@ -21 +21 @@ interface Window {
+-  labelmodel: datas[]
++  labelmodel: datas[];

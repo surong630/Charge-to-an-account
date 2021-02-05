@@ -26,13 +26,13 @@
     }
   })
   export default class EditLabel extends Vue {
-    tag?: {id: string;name: string} = undefined
+    tag?: {id: string; name: string} = undefined
     created() {
       // 找到localStorage中是否有id,没有就跳转到404
       const id = this.$route.params.id
       labelmodel.fetch()
       const tags = labelmodel.data
-      const tag = tags.filter(t => {return t.id === id}
+      const tag = tags.filter((t: any) => {return t.id === id}
       )[0]
       if(tag) {
         this.tag = tag
