@@ -32,7 +32,8 @@ type Source = {
 } })
 
 export default class Money extends Vue{
-  tagsList =  labelmodel.fetch()
+  tagsList =  window.tagList
+  newtagsList: Source[] = newtagsListmodel.fetch()
   source: Source = {
     tagsList: [],
     type: '-',
@@ -40,7 +41,6 @@ export default class Money extends Vue{
     notes: '',
     data: new Date()
   }
-  newtagsList: Source[] = newtagsListmodel.fetch()
   ontagsListChanged(val: []) {
     this.source.tagsList = val
   }

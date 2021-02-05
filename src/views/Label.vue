@@ -22,7 +22,7 @@ labelmodel.fetch()
 })
 
 export default class Label extends Vue {
-  tags = labelmodel.data
+  tags = window.tagList
   createTag() {
     // 重复不添加
     const name = window.prompt('请输入标签名')

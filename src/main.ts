@@ -6,11 +6,12 @@ import Icon from '@/components/Icon.vue'
 import './registerServiceWorker'
 import router from './router'
 import store from './store'
-
+import labelmodel from '@/models/labelmodel'
 Vue.config.productionTip = false
 Vue.component('Nav', Nav)
 Vue.component('Layout', Layout)
 Vue.component('Icon', Icon)
+window.tagList = labelmodel.fetch()
 new Vue({
   router,
   store,
