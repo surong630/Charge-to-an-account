@@ -54,7 +54,7 @@ const model: TagListModel = {
       this.data.splice(index,1)
       this.save()
     }
-    return 'success'
+    return true
   },
   // 从localStorage取出来 放到data中
   fetch() {

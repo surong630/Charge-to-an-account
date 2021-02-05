@@ -1,10 +1,12 @@
 const localStorageKey = 'recordList'
+import clone from '@/lib/clone'
 const model = {
   data: [] as Source[],
   // 深拷贝
   create(record: any) {
     const newSource = clone(record)
     this.data.push(newSource)
+    this.save()
   },
   // 从localStorage取出
   fetch() {
@@ -12,7 +14,7 @@ const model = {
   },
   // 存到localStorage
   save () {
-    window.localStorage.setItem(localStorageKey, JSON.stringify(this.data))
+    localStorage.setItem(localStorageKey, JSON.stringify(this.data))
   }
 }
 export default model

@@ -26,6 +26,8 @@ export default class Label extends Vue {
   createTag() {
     // 重复不添加
     const name = window.prompt('请输入标签名')
+    console.log(name);
+    
     if(name) {
       window.createTag(name)
     }

@@ -20,6 +20,12 @@ window.createTag = (name: string) => {
         window.alert('成功了')
       }
 }
+window.removeTag = (id: string) => {
+  return labelmodel.remove(id)
+}
+window.updateTag = (id: string, name: string) => {
+  return labelmodel.update(id, name)
+}
 new Vue({
   router,
   store,

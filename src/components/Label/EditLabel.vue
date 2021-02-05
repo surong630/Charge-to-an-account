@@ -42,14 +42,17 @@
     }
     update(val: string) {
       if(this.tag) {
-        labelmodel.update(this.tag.id,val)
+        window.updateTag(this.tag.id,val)
       }
     }
     remove() {
       if(this.tag) {
-        labelmodel.remove(this.tag.id)
+        if(window.removeTag(this.tag.id)){
+          this.$router.back()
+        }else {
+          alert('删除失败')
+        }
       }
-      this.$router.back()
     }
   }
 </script>

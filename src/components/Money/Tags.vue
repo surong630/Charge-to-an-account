@@ -43,8 +43,7 @@
         tag = window.prompt('请输入正确的标签');
       }else if(this.tagList) {
         // 将tag存入到localStorage中
-      this.$emit('update:dataSource',
-          [...this.tagList, name]);
+      window.createTag(tag)
       }
     }
   }

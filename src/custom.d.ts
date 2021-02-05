@@ -8,6 +8,8 @@ type Source = {
 interface Window {
   tagList: datas[];
   createTag: (name: string) => void; 
+  removeTag: (id: string) => boolean;
+  updateTag: (id: string, name: string) => 'success' | 'duplicated';
 }
 type datas = {
   id: string;
@@ -19,5 +21,5 @@ type TagListModel = {
   create: (name: string) => 'success' | 'duplicated';
   save: () => void;
   update: (id: string,name: string) => 'success' | 'duplicated';
-  remove: (id: string) => 'success';
+  remove: (id: string) => true;
 }
