@@ -48,8 +48,7 @@ export default class Money extends Vue{
     this.source.notes = val
   }
   onnumberChange() {
-    const newSource = newtagsListmodel.clone(this.source)
-    this.newtagsList.push(newSource)
+    newtagsListmodel.create(this.source)
   }
   @Watch('newtagsList')
   onnewtagsListchange() {

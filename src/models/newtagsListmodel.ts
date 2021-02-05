@@ -2,8 +2,9 @@ const localStorageKey = 'recordList'
 const model = {
   data: [] as Source[],
   // 深拷贝
-  clone(data: Source[]){
-    return JSON.parse(JSON.stringify(data))
+  create(record: any) {
+    const newSource = clone(record)
+    this.data.push(newSource)
   },
   // 从localStorage取出
   fetch() {
