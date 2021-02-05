@@ -6,7 +6,7 @@
       type="text" 
       placeholder="请在这里输入"
       :value="value"
-      @input="onvalueChange"
+      @input="onValueChanged($event.target.value)"
       />
     </label>
 </template>
@@ -21,8 +21,8 @@
     @Prop() placeholder!: string;
     // 监听值变化 传回去
     @Watch('value')
-    onvalueChange(event: any) {
-      this.$emit('update:value', event.target.value)
+    onValueChanged(value: string) {
+      this.$emit('update:value', value);
     }
   }
 </script>

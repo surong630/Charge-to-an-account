@@ -1,7 +1,7 @@
 <template>
   <Layout>
     <div class="icon-wrapper">
-      <Icon class="left" name="left"></Icon>
+      <Icon @click.native="back" class="left" name="left"></Icon>
       <span class="edit">编辑标签</span>
       <span class="right"></span>
     </div>
@@ -30,8 +30,8 @@
     created() {
       // 找到localStorage中是否有id,没有就跳转到404
       const id = this.$route.params.id
-      labelmodel.fetch()
-      const tags = labelmodel.data
+      // 找到label中的全局数据
+      const tags = window.tagList
       const tag = tags.filter((t: any) => {return t.id === id}
       )[0]
       if(tag) {
@@ -50,6 +50,9 @@
         window.removeTag(this.tag.id)
         this.$router.back()
       }
+    }
+    back() {
+      this.$router.back()
     }
   }
 </script>

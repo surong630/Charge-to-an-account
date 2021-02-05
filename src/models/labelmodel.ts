@@ -23,21 +23,24 @@ const model: TagListModel = {
     const tag = this.data.filter(i => i.id === id)[0]
     // 判断是否重复
     const names = this.data.map(i => i.name)
+    const index = names.indexOf(name);
+    names.splice(index,1)
     if(names.indexOf(name) >=0){
-      window.alert('标签名重复了 请重新输入')
+      alert('重复了大哥')
       return 'duplicated'
-    }
-    // 更改对应的name值
-    if(tag) {
+    }else {
+      // 更改对应的name值
+      console.log('还是保存了');
       tag.name = name
+      // 保存
+      this.save()
+      return 'success'
     }
-    // 保存
-    this.save()
-    return 'success'
   },
   // 存到localStorage
   save () {
     localStorage.setItem(localStorageKey, JSON.stringify(this.data))
+    window.tagList = this.data
   },
   // 删除
   remove(id: string) {
