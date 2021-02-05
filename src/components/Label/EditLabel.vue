@@ -47,11 +47,8 @@
     }
     remove() {
       if(this.tag) {
-        if(window.removeTag(this.tag.id)){
-          this.$router.back()
-        }else {
-          alert('删除失败')
-        }
+        window.removeTag(this.tag.id)
+        this.$router.back()
       }
     }
   }

@@ -16,7 +16,6 @@
 import { Component, Vue } from "vue-property-decorator";
 import TagButton from '@/components/TagButton.vue'
 const labelmodel = require('@/models/labelmodel.ts').default
-labelmodel.fetch()
 @Component({
   components: {TagButton}
 })
@@ -26,8 +25,6 @@ export default class Label extends Vue {
   createTag() {
     // 重复不添加
     const name = window.prompt('请输入标签名')
-    console.log(name);
-    
     if(name) {
       window.createTag(name)
     }
