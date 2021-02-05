@@ -5,7 +5,9 @@
       <input 
       type="text" 
       placeholder="请在这里输入"
-      v-model="value"/>
+      :value="value"
+      @input="onvalueChange"
+      />
     </label>
 </template>
 
@@ -19,8 +21,8 @@
     @Prop() placeholder!: string;
     // 监听值变化 传回去
     @Watch('value')
-    onvalueChange(value: string) {
-      this.$emit('update:value', this.value)
+    onvalueChange(event: any) {
+      this.$emit('update:value', event.target.value)
     }
   }
 </script>

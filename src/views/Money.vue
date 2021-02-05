@@ -1,7 +1,6 @@
 <template>
 <div>
   <Layout classFix="money">
-    {{source}}
     <number :number.sync="source.num" @update:number="onnumberChange"></number>
     <types :type.sync="source.type"></types>
     <div class="formNotes">

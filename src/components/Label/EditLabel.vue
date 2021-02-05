@@ -6,10 +6,10 @@
       <span class="right"></span>
     </div>
     <div class="notes-wrapper">
-      <Notes :value="tag.name" name="标签名" placeholder="请输入标签名"></Notes>
+      <Notes :value="tag.name" @update:value="update" name="标签名" placeholder="请输入标签名"></Notes>
     </div>
     <div class="button-wrapper">
-      <tag-button>删除标签</tag-button>
+      <tag-button @click.native="remove">删除标签</tag-button>
     </div>
   </Layout>
 </template>
@@ -39,6 +39,17 @@
       }else {
         this.$router.replace('/404')
       }
+    }
+    update(val: string) {
+      if(this.tag) {
+        labelmodel.update(this.tag.id,val)
+      }
+    }
+    remove() {
+      if(this.tag) {
+        labelmodel.remove(this.tag.id)
+      }
+      this.$router.back()
     }
   }
 </script>
