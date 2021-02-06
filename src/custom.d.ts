@@ -10,6 +10,8 @@ interface Window {
   createTag: (name: string) => void; 
   removeTag: (id: string) => boolean;
   updateTag: (id: string, name: string) => 'success' | 'duplicated';
+  recordList: Source[];
+  createSource: (source: Source) => void;
 }
 type datas = {
   id: string;

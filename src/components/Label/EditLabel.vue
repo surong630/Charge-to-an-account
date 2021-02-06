@@ -42,6 +42,7 @@
     }
     update(val: string) {
       if(this.tag) {
+        console.log('edit');
         window.updateTag(this.tag.id,val)
       }
     }

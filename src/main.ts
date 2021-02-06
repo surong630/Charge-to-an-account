@@ -7,10 +7,17 @@ import './registerServiceWorker'
 import router from './router'
 import store from './store'
 import labelmodel from '@/models/labelmodel'
+import newtagsListmodel from '@/models/newtagsListmodel'
 Vue.config.productionTip = false
 Vue.component('Nav', Nav)
 Vue.component('Layout', Layout)
 Vue.component('Icon', Icon)
+// source store
+window.recordList = newtagsListmodel.fetch()
+window.createSource = (source: Source)=>{
+  return newtagsListmodel.create(source)
+}
+// tag store
 window.tagList = labelmodel.fetch()
 window.createTag = (name: string) => {
   const message = labelmodel.create(name)

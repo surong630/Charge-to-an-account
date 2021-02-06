@@ -17,7 +17,6 @@ import Notes from '@/components/Money/Notes.vue';
 import Number from '@/components/Money/Number.vue';
 import Tags from '@/components/Money/Tags.vue';
 import Types from '@/components/Money/Types.vue';
-const newtagsListmodel = require('@/models/newtagsListmodel.ts').default
 const labelmodel = require('@/models/labelmodel.ts').default
 type Source = {
   tagsList: string[];
@@ -33,7 +32,7 @@ type Source = {
 
 export default class Money extends Vue{
   tagsList =  window.tagList
-  newtagsList: Source[] = newtagsListmodel.fetch()
+  newtagsList = window.recordList
   source: Source = {
     tagsList: [],
     type: '-',
@@ -48,11 +47,7 @@ export default class Money extends Vue{
     this.source.notes = val
   }
   onnumberChange() {
-    newtagsListmodel.create(this.source)
-  }
-  @Watch('newtagsList')
-  onnewtagsListchange() {
-    newtagsListmodel.save(this.newtagsList)
+    window.createSource(this.source)
   }
   // 上面的都是处理ok后的数据的
 }
