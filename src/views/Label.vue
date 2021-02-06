@@ -16,18 +16,22 @@
 import { Component, Vue } from "vue-property-decorator";
 import TagButton from '@/components/TagButton.vue'
 @Component({
-  components: {TagButton}
+  components: {TagButton},
+  computed: {
+    tags() {
+      return this.$store.state.tagList
+    }
+  }
 })
 
 export default class Label extends Vue {
   // TODO
-  tags = []
   createTag() {
     // 重复不添加
     const name = window.prompt('请输入标签名')
     if(name) {
       // TODO
-      // store.createTag(name)
+      this.$store.commit('createTag',name)
     }
   }
 }

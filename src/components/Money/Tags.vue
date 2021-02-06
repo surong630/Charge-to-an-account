@@ -20,10 +20,13 @@
   import Vue from 'vue';
   import { Component, Prop } from 'vue-property-decorator'
   
-  @Component
+  @Component({
+    computed:{
+      tagList(){ 
+        return this.$store.state.tagList}
+    }
+  })
   export default class Tags extends Vue {
-    // TODO
-    tagList = [];
     currentList: string[] = [];
     // 是否选中标签
     toggle(item: string) {
@@ -40,11 +43,9 @@
       let tag = window.prompt('请输入你需要添加的标签');
       if(tag === '' || tag === null) {
         tag = window.prompt('请输入正确的标签');
-      }else if(this.tagList) {
-        // 将tag存入到localStorage中
-        // TODO
-      // store.createTag(tag)
       }
+        // 将tag存入到localStorage中
+      this.$store.commit('createTag',tag)
     }
   }
 </script>
