@@ -6,7 +6,7 @@
     <div class="formNotes">
       <notes name="备注" palceholder="在这里添加备注" @update:value="onvalueChange"></notes>
     </div>
-    <tags :tagList.sync="tagsList" @update:check="ontagsListChanged"></tags>
+    <tags></tags>
   </Layout>
 </div>
 </template>
@@ -31,7 +31,6 @@ type Source = {
 } })
 
 export default class Money extends Vue{
-  tagsList =  store.tagList
   newtagsList = store.recordList
   source: Source = {
     tagsList: [],
@@ -39,9 +38,6 @@ export default class Money extends Vue{
     num: '0',
     notes: '',
     data: new Date()
-  }
-  ontagsListChanged(val: []) {
-    this.source.tagsList = val
   }
   onvalueChange(val: string) {
     this.source.notes = val

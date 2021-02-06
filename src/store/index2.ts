@@ -8,6 +8,5 @@ const store = {
 ...newtagsListmodel
 // 严重依赖window
 }
-console.log(store);
 
 export default store

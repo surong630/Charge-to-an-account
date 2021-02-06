@@ -24,7 +24,7 @@
   
   @Component
   export default class Tags extends Vue {
-    @Prop() tagList: string[] | undefined;
+    tagList = store.fetchTag();
     currentList: string[] = [];
     // 是否选中标签
     toggle(item: string) {
