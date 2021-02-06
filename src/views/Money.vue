@@ -17,7 +17,6 @@ import Notes from '@/components/Money/Notes.vue';
 import Number from '@/components/Money/Number.vue';
 import Tags from '@/components/Money/Tags.vue';
 import Types from '@/components/Money/Types.vue';
-import store from '@/store/index2'
 type Source = {
   tagsList: string[];
   type: string;
@@ -28,10 +27,15 @@ type Source = {
 
 @Component({ components:{
   Notes, Number, Tags, Types
-} })
+},
+computed: {
+  newtagsList() {
+    return this.$store.state.recordList
+  }
+}
+ })
 
 export default class Money extends Vue{
-  newtagsList = store.recordList
   source: Source = {
     tagsList: [],
     type: '-',
@@ -39,11 +43,14 @@ export default class Money extends Vue{
     notes: '',
     data: new Date()
   }
+  beforeCreate() {
+    this.$store.commit('fetchSource')
+  }
   onvalueChange(val: string) {
     this.source.notes = val
   }
   onnumberChange() {
-    store.createSource(this.source)
+    this.$store.commit('createSource',this.source)
   }
   // 上面的都是处理ok后的数据的
 }

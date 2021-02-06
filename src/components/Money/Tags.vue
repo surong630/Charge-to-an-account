@@ -19,12 +19,11 @@
 <script lang="ts">
   import Vue from 'vue';
   import { Component, Prop } from 'vue-property-decorator'
-  import store from '@/store/index2'
-
   
   @Component
   export default class Tags extends Vue {
-    tagList = store.fetchTag();
+    // TODO
+    tagList = [];
     currentList: string[] = [];
     // 是否选中标签
     toggle(item: string) {
@@ -43,7 +42,8 @@
         tag = window.prompt('请输入正确的标签');
       }else if(this.tagList) {
         // 将tag存入到localStorage中
-      store.createTag(tag)
+        // TODO
+      // store.createTag(tag)
       }
     }
   }

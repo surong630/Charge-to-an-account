@@ -18,7 +18,6 @@
   import {Vue, Component} from 'vue-property-decorator'
   import TagButton from '@/components/TagButton.vue'
   import Notes from '@/components/Money/Notes.vue'
-  import store from '@/store/index2'
   @Component({
     components: {
       TagButton,
@@ -31,24 +30,27 @@
       // 找到localStorage中是否有id,没有就跳转到404
       const id = this.$route.params.id
       // 找到label中的全局数据
-      const tags = store.tagList
-      const tag = tags.filter((t: datas) => {return t.id === id}
-      )[0]
-      if(tag) {
-        this.tag = tag
-      }else {
-        this.$router.replace('/404')
-      }
+      // TODO
+      // const tags = [store.tagList]
+      // const tag = tags.filter((t: datas) => {return t.id === id}
+      // )[0]
+      // if(tag) {
+      //   this.tag = tag
+      // }else {
+      //   this.$router.replace('/404')
+      // }
     }
     update(val: string) {
       if(this.tag) {
         console.log('edit');
-        store.updateTag(this.tag.id,val)
+        // TODO
+        // store.updateTag(this.tag.id,val)
       }
     }
     remove() {
       if(this.tag) {
-        store.removeTag(this.tag.id)
+        // TODO
+        // store.removeTag(this.tag.id)
         this.$router.back()
       }
     }

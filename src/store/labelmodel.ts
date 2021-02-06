@@ -1,5 +1,4 @@
 import createId from '@/lib/createId';
-import store from '@/store/index2'
 const localStorageKey = 'tagList';
 const label =  {
   // tag store
@@ -60,8 +59,9 @@ updateTag(id: string, name: string){
 },
 saveTag () {
   localStorage.setItem(localStorageKey, JSON.stringify(this.tagList))
-  store.tagList = this.tagList
-},
+  // TODO
+  // store.tagList = this.tagList
+}
 }
 label.fetchTag()
 export default label
