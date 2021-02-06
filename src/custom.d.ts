@@ -6,12 +6,14 @@ type Source = {
   data?: Date;
 }
 interface Window {
-  tagList: datas[];
-  createTag: (name: string) => void; 
-  removeTag: (id: string) => boolean;
-  updateTag: (id: string, name: string) => 'success' | 'duplicated';
-  recordList: Source[];
-  createSource: (source: Source) => void;
+  store: {
+    tagList: datas[];
+    createTag: (name: string) => void; 
+    removeTag: (id: string) => boolean;
+    updateTag: (id: string, name: string) => 'success' | 'duplicated';
+    recordList: Source[];
+    createSource: (source: Source) => void;
+  };
 }
 type datas = {
   id: string;
