@@ -12,12 +12,12 @@
 </template>
 
 <script lang="ts">
-import { Vue, Component,Watch } from 'vue-property-decorator'
+import { Vue, Component} from 'vue-property-decorator'
 import Notes from '@/components/Money/Notes.vue';
 import Number from '@/components/Money/Number.vue';
 import Tags from '@/components/Money/Tags.vue';
 import Types from '@/components/Money/Types.vue';
-const labelmodel = require('@/models/labelmodel.ts').default
+import store from '@/store/index2'
 type Source = {
   tagsList: string[];
   type: string;
@@ -31,8 +31,8 @@ type Source = {
 } })
 
 export default class Money extends Vue{
-  tagsList =  window.tagList
-  newtagsList = window.recordList
+  tagsList =  store.tagList
+  newtagsList = store.recordList
   source: Source = {
     tagsList: [],
     type: '-',
@@ -47,7 +47,7 @@ export default class Money extends Vue{
     this.source.notes = val
   }
   onnumberChange() {
-    window.createSource(this.source)
+    store.createSource(this.source)
   }
   // 上面的都是处理ok后的数据的
 }

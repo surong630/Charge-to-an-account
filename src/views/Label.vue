@@ -15,18 +15,18 @@
 <script lang="ts">
 import { Component, Vue } from "vue-property-decorator";
 import TagButton from '@/components/TagButton.vue'
-const labelmodel = require('@/models/labelmodel.ts').default
+import store from '@/store/index2'
 @Component({
   components: {TagButton}
 })
 
 export default class Label extends Vue {
-  tags = window.tagList
+  tags = store.tagList
   createTag() {
     // 重复不添加
     const name = window.prompt('请输入标签名')
     if(name) {
-      window.createTag(name)
+      store.createTag(name)
     }
   }
 }

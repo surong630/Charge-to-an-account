@@ -5,16 +5,6 @@ type Source = {
   notes: string;
   data?: Date;
 }
-interface Window {
-  store: {
-    tagList: datas[];
-    createTag: (name: string) => void; 
-    removeTag: (id: string) => boolean;
-    updateTag: (id: string, name: string) => 'success' | 'duplicated';
-    recordList: Source[];
-    createSource: (source: Source) => void;
-  };
-}
 type datas = {
   id: string;
   name: string;

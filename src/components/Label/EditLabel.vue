@@ -18,7 +18,7 @@
   import {Vue, Component} from 'vue-property-decorator'
   import TagButton from '@/components/TagButton.vue'
   import Notes from '@/components/Money/Notes.vue'
-  const labelmodel = require('@/models/labelmodel').default
+  import store from '@/store/index2'
   @Component({
     components: {
       TagButton,
@@ -26,13 +26,13 @@
     }
   })
   export default class EditLabel extends Vue {
-    tag?: {id: string; name: string} = undefined
+    tag?: datas
     created() {
       // 找到localStorage中是否有id,没有就跳转到404
       const id = this.$route.params.id
       // 找到label中的全局数据
-      const tags = window.tagList
-      const tag = tags.filter((t: any) => {return t.id === id}
+      const tags = store.tagList
+      const tag = tags.filter((t: datas) => {return t.id === id}
       )[0]
       if(tag) {
         this.tag = tag
@@ -43,12 +43,12 @@
     update(val: string) {
       if(this.tag) {
         console.log('edit');
-        window.updateTag(this.tag.id,val)
+        store.updateTag(this.tag.id,val)
       }
     }
     remove() {
       if(this.tag) {
-        window.removeTag(this.tag.id)
+        store.removeTag(this.tag.id)
         this.$router.back()
       }
     }

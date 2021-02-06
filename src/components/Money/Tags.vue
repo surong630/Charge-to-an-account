@@ -19,8 +19,8 @@
 <script lang="ts">
   import Vue from 'vue';
   import { Component, Prop } from 'vue-property-decorator'
-  const labelmodel = require('@/models/labelmodel').default
-  console.log(labelmodel);
+  import store from '@/store/index2'
+
   
   @Component
   export default class Tags extends Vue {
@@ -43,7 +43,7 @@
         tag = window.prompt('请输入正确的标签');
       }else if(this.tagList) {
         // 将tag存入到localStorage中
-      window.createTag(tag)
+      store.createTag(tag)
       }
     }
   }
