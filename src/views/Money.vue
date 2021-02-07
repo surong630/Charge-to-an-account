@@ -27,15 +27,13 @@ type Source = {
 
 @Component({ components:{
   Notes, Number, Tags, Types
-},
-computed: {
-  newtagsList() {
-    return this.$store.state.recordList
-  }
 }
  })
 
 export default class Money extends Vue{
+  get newtagsList() {
+    return this.$store.state.recordList
+  }
   source: Source = {
     tagsList: [],
     type: '-',

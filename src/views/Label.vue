@@ -18,16 +18,14 @@ import {mixins} from 'vue-class-component'
 import TagHelper from '@/mixins/TagHelper'
 import TagButton from '@/components/TagButton.vue'
 @Component({
-  components: {TagButton},
-  computed: {
-    tags() {
-      return this.$store.state.tagList
-    }
-  }
+  components: {TagButton}
 })
 
 export default class Label extends mixins(TagHelper) {
-      beforeCreate() {
+  get tags() {
+      return this.$store.state.tagList
+    }
+  beforeCreate() {
       this.$store.commit('fetchTag')
     }
 }

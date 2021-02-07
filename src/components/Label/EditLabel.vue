@@ -25,32 +25,30 @@
     }
   })
   export default class EditLabel extends Vue {
-    tag?: datas
+    get tag() {
+      return this.$store.state.currentTag
+    }
     created() {
       // 找到localStorage中是否有id,没有就跳转到404
       const id = this.$route.params.id
       // 找到label中的全局数据
       // TODO
-      // const tags = [store.tagList]
-      // const tag = tags.filter((t: datas) => {return t.id === id}
-      // )[0]
-      // if(tag) {
-      //   this.tag = tag
-      // }else {
-      //   this.$router.replace('/404')
-      // }
+      this.$store.commit('setCurrentTag', id)
+      if(!this.tag) {
+        this.$router.replace('/404')
+      }
     }
     update(val: string) {
       if(this.tag) {
         console.log('edit');
         // TODO
-        // store.updateTag(this.tag.id,val)
+        // this.$store.commit('updateTag', this.tag.id, val)
       }
     }
     remove() {
       if(this.tag) {
         // TODO
-        // store.removeTag(this.tag.id)
+        this.$store.commit('removeTag',this.tag.id)
         this.$router.back()
       }
     }
