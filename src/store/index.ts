@@ -1,5 +1,5 @@
 import Vue from 'vue'
-import Vuex, { Store } from 'vuex'
+import Vuex from 'vuex'
 import clone from '@/lib/clone'
 import createId from '@/lib/createId';
 
@@ -33,8 +33,7 @@ const store =  new Vuex.Store({
     },
     setCurrentTag(state, id: string) {
       const tags = state.tagList
-      const tag = tags.filter((t: datas) => {return t.id === id}
-      )[0]
+      const tag = tags.filter((t: datas) => {return t.id === id})[0]
       state.currentTag = tag
     },
     // 更新tagList
@@ -63,22 +62,24 @@ const store =  new Vuex.Store({
       // TODO
       // store.tagList = this.tagList
     },
+    // 移除标签 
     removeTag(state,id: string) {
       let index = -1
         // 找到匹配到的index,存下来
-        for(let i=0;i<state.tagList.length;i++) {
-          if(state.tagList[i].id === id) {
-            index = i;
-            break
-          }
+      for(let i=0;i<state.tagList.length;i++) {
+        if(state.tagList[i].id === id) {
+          index = i;
+          break
         }
-        if(index >= 0) {
-          // 删除并保存
-          state.tagList.splice(index,1)
-          store.commit('saveTag')
-        }
-        return true
+      }
+      if(index >= 0) {
+        // 删除并保存
+        state.tagList.splice(index,1)
+        store.commit('saveTag')
+      }
+      return true
     },
+    // 更新标签
     updateTag(state, object: {id: string; name: string}){
       const id = object.id
       const name = object.name
@@ -90,16 +91,13 @@ const store =  new Vuex.Store({
       names.splice(index,1)
       if(names.indexOf(name) >=0){
         alert('重复了大哥')
-        return 'duplicated'
       }else {
         // 更改对应的name值
-        console.log('还是保存了');
         tag.name = name
         // 保存
         store.commit('saveTag')
-        return 'success'
       }
-},
+    }
   },
   actions: {
   },

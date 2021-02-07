@@ -2,7 +2,7 @@
 <div>
   <Layout classFix="money">
     <number :number.sync="source.num" @update:number="onnumberChange"></number>
-    <types :type.sync="source.type"></types>
+    <Tabs :dataSource="typeList" :value.sync="source.type"></Tabs>
     <div class="formNotes">
       <notes name="备注" palceholder="在这里添加备注" @update:value="onvalueChange"></notes>
     </div>
@@ -16,7 +16,8 @@ import { Vue, Component} from 'vue-property-decorator'
 import Notes from '@/components/Money/Notes.vue';
 import Number from '@/components/Money/Number.vue';
 import Tags from '@/components/Money/Tags.vue';
-import Types from '@/components/Money/Types.vue';
+import Tabs from '@/components/Money/Tabs.vue';
+import typeList from '@/constants/typeList'
 type Source = {
   tagsList: string[];
   type: string;
@@ -26,11 +27,12 @@ type Source = {
 }
 
 @Component({ components:{
-  Notes, Number, Tags, Types
+  Notes, Number, Tags, Tabs
 }
  })
 
 export default class Money extends Vue{
+  typeList = typeList
   get newtagsList() {
     return this.$store.state.recordList
   }
