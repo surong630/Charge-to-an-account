@@ -16,12 +16,6 @@ const store =  new Vuex.Store({
     currentTag: undefined
   } as RootState,
   mutations: {
-    setCurrentTag(state, id: string) {
-      const tags = state.tagList
-      const tag = tags.filter((t: datas) => {return t.id === id}
-      )[0]
-      state.currentTag = tag
-    },
     // 将recordList重新定义
     fetchSource(state) {
       state.recordList = JSON.parse(localStorage.getItem('recordList') || '[]')
@@ -36,6 +30,12 @@ const store =  new Vuex.Store({
     // 保存localStorage
     saveSource (state) {
       localStorage.setItem('recordList', JSON.stringify(state.recordList))
+    },
+    setCurrentTag(state, id: string) {
+      const tags = state.tagList
+      const tag = tags.filter((t: datas) => {return t.id === id}
+      )[0]
+      state.currentTag = tag
     },
     // 更新tagList
     fetchTag(state) {
@@ -78,7 +78,28 @@ const store =  new Vuex.Store({
           store.commit('saveTag')
         }
         return true
-    }
+    },
+    updateTag(state, object: {id: string; name: string}){
+      const id = object.id
+      const name = object.name
+      // 找到对应的匹配项
+      const tag = state.tagList.filter(i => i.id === id)[0]
+      // 判断是否重复
+      const names = state.tagList.map(i => i.name)
+      const index = names.indexOf(name);
+      names.splice(index,1)
+      if(names.indexOf(name) >=0){
+        alert('重复了大哥')
+        return 'duplicated'
+      }else {
+        // 更改对应的name值
+        console.log('还是保存了');
+        tag.name = name
+        // 保存
+        store.commit('saveTag')
+        return 'success'
+      }
+},
   },
   actions: {
   },

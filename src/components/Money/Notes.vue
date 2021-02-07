@@ -20,7 +20,6 @@
     @Prop() name!: string;
     @Prop() placeholder!: string;
     // 监听值变化 传回去
-    @Watch('value')
     onValueChanged(value: string) {
       this.$emit('update:value', value);
     }

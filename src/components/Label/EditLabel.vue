@@ -33,6 +33,7 @@
       const id = this.$route.params.id
       // 找到label中的全局数据
       // TODO
+      this.$store.commit('fetchTag')
       this.$store.commit('setCurrentTag', id)
       if(!this.tag) {
         this.$router.replace('/404')
@@ -40,9 +41,7 @@
     }
     update(val: string) {
       if(this.tag) {
-        console.log('edit');
-        // TODO
-        // this.$store.commit('updateTag', this.tag.id, val)
+        this.$store.commit('updateTag', {id: this.tag.id, name: val})
       }
     }
     remove() {
