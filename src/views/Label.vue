@@ -14,6 +14,8 @@
 
 <script lang="ts">
 import { Component, Vue } from "vue-property-decorator";
+import {mixins} from 'vue-class-component'
+import TagHelper from '@/mixins/TagHelper'
 import TagButton from '@/components/TagButton.vue'
 @Component({
   components: {TagButton},
@@ -24,16 +26,10 @@ import TagButton from '@/components/TagButton.vue'
   }
 })
 
-export default class Label extends Vue {
-  // TODO
-  createTag() {
-    // 重复不添加
-    const name = window.prompt('请输入标签名')
-    if(name) {
-      // TODO
-      this.$store.commit('createTag',name)
+export default class Label extends mixins(TagHelper) {
+      beforeCreate() {
+      this.$store.commit('fetchTag')
     }
-  }
 }
 </script>
 

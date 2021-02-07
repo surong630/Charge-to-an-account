@@ -45,7 +45,6 @@ export default class Money extends Vue{
   }
   beforeCreate() {
     this.$store.commit('fetchSource')
-    this.$store.commit('fetchTagg')
   }
   onvalueChange(val: string) {
     this.source.notes = val

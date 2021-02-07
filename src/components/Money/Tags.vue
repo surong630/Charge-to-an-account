@@ -2,7 +2,7 @@
     <!-- 标签 -->
     <div class="tags">
       <div class="new">
-        <button @click="addTag">新增标签</button>
+        <button @click="createTag">新增标签</button>
       </div>
       <ul class="current">
         <li 
@@ -19,14 +19,18 @@
 <script lang="ts">
   import Vue from 'vue';
   import { Component, Prop } from 'vue-property-decorator'
-  
+  import {mixins} from 'vue-class-component'
+  import TagHelper from '@/mixins/TagHelper'
   @Component({
     computed:{
       tagList(){ 
         return this.$store.state.tagList}
     }
   })
-  export default class Tags extends Vue {
+  export default class Tags extends mixins(TagHelper) {
+    beforeCreate() {
+      this.$store.commit('fetchTag')
+    }
     currentList: string[] = [];
     // 是否选中标签
     toggle(item: string) {
@@ -38,15 +42,7 @@
       }
       this.$emit('update:check', this.currentList)
     }
-    // 新增标签
-    addTag() {
-      let tag = window.prompt('请输入你需要添加的标签');
-      if(tag === '' || tag === null) {
-        tag = window.prompt('请输入正确的标签');
-      }
-        // 将tag存入到localStorage中
-      this.$store.commit('createTag',tag)
-    }
+
   }
 </script>
 
