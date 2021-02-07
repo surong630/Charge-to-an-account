@@ -23,7 +23,7 @@ type Source = {
   type: string;
   num: string;
   notes: string;
-  data?: Date;
+  data?: string;
 }
 
 @Component({ components:{
@@ -41,7 +41,7 @@ export default class Money extends Vue{
     type: '-',
     num: '0',
     notes: '',
-    data: new Date()
+    data: new Date().toISOString()
   }
   beforeCreate() {
     this.$store.commit('fetchSource')

@@ -3,7 +3,7 @@ type Source = {
   type: string;
   num: string;
   notes: string;
-  data?: Date;
+  data?: string;
 }
 type datas = {
   id: string;
@@ -16,4 +16,9 @@ type TagListModel = {
   save: () => void;
   update: (id: string,name: string) => 'success' | 'duplicated';
   remove: (id: string) => true;
+}
+type RootState = {
+  recordList: Source[];
+  tagList: datas[];
+  currentTag?: datas;
 }

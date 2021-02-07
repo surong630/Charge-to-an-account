@@ -24,7 +24,6 @@ const store =  new Vuex.Store({
     createSource: (state, source: Source) => {
       const newSource = clone(source)
       state.recordList.push(newSource)
-      console.log(state.recordList);
       store.commit('saveSource')
     },
     // 保存localStorage
