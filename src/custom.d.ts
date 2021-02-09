@@ -1,7 +1,7 @@
 type Source = {
   tagsList: string[];
   type: string;
-  num: string;
+  num: number;
   notes: string;
   data?: string;
 }

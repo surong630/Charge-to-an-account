@@ -24,6 +24,7 @@
     display: flex;
     flex: 1;
     flex-direction: column;
+    overflow: auto;
   }
   // 让内容撑满最多
   .money {

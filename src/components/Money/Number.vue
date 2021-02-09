@@ -72,7 +72,7 @@
     }
     ok () {
       // 传值回去
-      this.$emit('update:number', this.output);
+      this.$emit('update:number', parseFloat(this.output));
       this.output = '0'
     }
   }

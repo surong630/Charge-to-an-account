@@ -17,8 +17,7 @@
 </template>
 
 <script lang="ts">
-  import Vue from 'vue';
-  import { Component, Prop } from 'vue-property-decorator'
+  import { Component} from 'vue-property-decorator'
   import {mixins} from 'vue-class-component'
   import TagHelper from '@/mixins/TagHelper'
   @Component
@@ -31,14 +30,15 @@
     }
     currentList: string[] = [];
     // 是否选中标签
-    toggle(item: string) {
-      const index = this.currentList.indexOf(item);
+    toggle(item: {id: string; name: string}) {
+      const index = this.currentList.indexOf(item.name);
       if(index<0) {
-        this.currentList.push(item)
+        this.currentList.push(item.name)
       }else {
         this.currentList.splice(index, 1)
       }
-      this.$emit('update:check', this.currentList)
+      console.log(this.currentList);
+      this.$emit('check', this.currentList)
     }
 
   }

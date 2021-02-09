@@ -6,7 +6,7 @@
     <div class="formNotes">
       <notes name="备注" palceholder="在这里添加备注" @update:value="onvalueChange"></notes>
     </div>
-    <tags></tags>
+    <tags @check='check'></tags>
   </Layout>
 </div>
 </template>
@@ -51,6 +51,10 @@ export default class Money extends Vue{
   }
   onnumberChange() {
     this.$store.commit('createSource',this.source)
+  }
+  check(val: []) {
+    this.source.tagsList = val
+    console.log(val);
   }
   // 上面的都是处理ok后的数据的
 }
