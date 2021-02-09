@@ -9,7 +9,7 @@
         v-for="item in tagList"
         :key="item.id"
         @click="toggle(item)"
-        :class="{actived:currentList.indexOf(item) >=0}">
+        :class="{actived:currentList.indexOf(item.name) >=0}">
           {{item.name}}
         </li>
       </ul>
@@ -31,6 +31,8 @@
     currentList: string[] = [];
     // 是否选中标签
     toggle(item: {id: string; name: string}) {
+      console.log(this.tagList);
+      
       const index = this.currentList.indexOf(item.name);
       if(index<0) {
         this.currentList.push(item.name)

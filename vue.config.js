@@ -3,6 +3,9 @@ const path  = require('path')
 // import path from 'path'
 module.exports = {
   lintOnSave: false,
+  publicPath: process.env.NODE_ENV === 'production'
+  ? '/Show-the-bill/'
+  : '/',
   chainWebpack: config => {
     const dir = path.resolve(__dirname, 'src/assets/iconfont')
     config.module

@@ -26,7 +26,7 @@
   import {Component, Prop} from 'vue-property-decorator'
   @Component // 装饰器
   export default class NumberPad extends Vue{
-    @Prop(String) number?: string;
+    @Prop(Number) number?: number;
     output =  '0';
     // 监听点击
     changeOutput(event: MouseEvent) {

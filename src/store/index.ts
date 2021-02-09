@@ -28,6 +28,7 @@ const store =  new Vuex.Store({
     },
     // 保存localStorage
     saveSource (state) {
+      alert('已保存')
       localStorage.setItem('recordList', JSON.stringify(state.recordList))
     },
     setCurrentTag(state, id: string) {

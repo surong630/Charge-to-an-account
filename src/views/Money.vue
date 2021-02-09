@@ -4,7 +4,7 @@
     <number :number.sync="source.num" @update:number="onnumberChange"></number>
     <Tabs :dataSource="typeList" :value.sync="source.type"></Tabs>
     <div class="formNotes">
-      <notes name="备注" palceholder="在这里添加备注" @update:value="onvalueChange"></notes>
+      <notes name="备注" palceholder="在这里添加备注" :value="source.notes" @update:value="onvalueChange"></notes>
     </div>
     <tags @check='check'></tags>
   </Layout>
@@ -21,7 +21,7 @@ import typeList from '@/constants/typeList'
 type Source = {
   tagsList: string[];
   type: string;
-  num: string;
+  num: number;
   notes: string;
   data?: string;
 }
@@ -39,7 +39,7 @@ export default class Money extends Vue{
   source: Source = {
     tagsList: [],
     type: '-',
-    num: '0',
+    num: 0,
     notes: '',
     data: new Date().toISOString()
   }
@@ -50,11 +50,15 @@ export default class Money extends Vue{
     this.source.notes = val
   }
   onnumberChange() {
+    if(this.source.tagsList.length ===0) {
+      alert('请选择至少一个标签')
+      return 
+    }
     this.$store.commit('createSource',this.source)
+    this.source.notes = ''
   }
   check(val: []) {
     this.source.tagsList = val
-    console.log(val);
   }
   // 上面的都是处理ok后的数据的
 }

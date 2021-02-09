@@ -2,7 +2,7 @@
   <div class="xxx">
     <Layout>
       <Tabs :dataSource="typeList" classfix="type" :value.sync="type"></Tabs>
-      <ol>
+      <ol v-if="recordList.length>0">
         <li v-for="(group,index) in groupedList" :key="index">
           <h2 class="title">
             {{beautify(group.title)}}
@@ -19,6 +19,7 @@
           </ol>
         </li>
       </ol>
+      <div v-else style="text-align: center;">没有了</div>
     </Layout>
   </div>
 </template>
@@ -50,7 +51,7 @@ export default class Statistics extends Vue{
     }
   }
   getList(list: []) {
-    return list.length === 0? '无' : list.join('')
+    return list.length === 0? '无' : list.join(',')
   }
   get recordList() {
     return (this.$store.state as RootState).recordList
@@ -58,12 +59,12 @@ export default class Statistics extends Vue{
   get groupedList() {
     // 解构赋值
     const { recordList } = this; // hashTab
-    if(recordList.length === 0) {return null}
     // 将数据用sort进行排序,通过比较a.data的ISO8601
     // 这里通过filter进行过滤,判断 只有type相等时才显示对应的数据
     const newList = recordList.filter(r => r.type === this.type).sort((a,b) => {
       return dayjs(b.data).valueOf() - dayjs(a.data).valueOf()
     })
+    if(newList.length === 0) {return null}
     type Result = {title: string; total?: number; items: Source[] }[]
     // 将第一项存入到数组中
     const result: Result = [{title: dayjs(newList[0].data).format('YYYY-MM-DD'), items:[newList[0]]}]
@@ -113,9 +114,9 @@ export default class Statistics extends Vue{
 <style lang="scss" scoped>
 @import '~@/assets/style/base.scss';
 .xxx ::v-deep .type-name {
-  background: white;
-&.selected{
   background: #c4c4c4;
+&.selected{
+  background: white;
   &::after{
     display: none;
   }
