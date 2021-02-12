@@ -19,7 +19,7 @@
           </ol>
         </li>
       </ol>
-      <div v-else style="text-align: center;">没有了</div>
+      <div v-else style="text-align: center;">目前没有相关记录</div>
     </Layout>
   </div>
 </template>

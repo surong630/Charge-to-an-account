@@ -2,11 +2,11 @@
 <div>
   <Layout classFix="money">
     <number :number.sync="source.num" @update:number="onnumberChange"></number>
-    <Tabs :dataSource="typeList" :value.sync="source.type"></Tabs>
     <div class="formNotes">
-      <notes name="备注" palceholder="在这里添加备注" :value="source.notes" @update:value="onvalueChange"></notes>
+    <Notes name="备注" palceholder="在这里添加备注" :value="source.notes" @update:value="onvalueChange"></Notes>
     </div>
-    <tags @check='check'></tags>
+    <Tags @check='check'></Tags>
+    <Tabs :dataSource="typeList" :value.sync="source.type"></Tabs>  
   </Layout>
 </div>
 </template>

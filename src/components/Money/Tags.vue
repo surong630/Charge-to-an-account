@@ -1,16 +1,16 @@
 <template>
     <!-- 标签 -->
     <div class="tags">
-      <div class="new">
-        <button @click="createTag">新增标签</button>
-      </div>
       <ul class="current">
         <li 
         v-for="item in tagList"
         :key="item.id"
         @click="toggle(item)"
-        :class="{actived:currentList.indexOf(item.name) >=0}">
-          {{item.name}}
+        :class="{actived:currentList.indexOf(item.name) >=0, tag: true}">
+          <Icon name="card"></Icon>
+          <span>
+            {{item.name}}
+          </span>
         </li>
       </ul>
     </div>
@@ -70,6 +70,7 @@
       margin-right: 12px;
       margin-top: 5px;
       padding: 0 16px;
+      display: flex;
       &.actived {
         background: darken(green, .4);
         color: white;

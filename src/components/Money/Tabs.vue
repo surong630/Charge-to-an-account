@@ -16,6 +16,7 @@
   import {Vue, Component,Prop} from 'vue-property-decorator'
   @Component
   export default class Tabs extends Vue{
+    // 用对象来进行存储支出和收入 再进行遍历 查看typeList
     @Prop(Array) dataSource?: [{name: string;value: string}];
     @Prop(String) classfix?: string;
     @Prop(String) value?: string;

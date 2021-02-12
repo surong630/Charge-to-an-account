@@ -6,6 +6,7 @@ export class TagHelper extends Vue {
     let tag = window.prompt('请输入你需要添加的标签');
     if(tag === '' || tag === null) {
       tag = window.prompt('请输入正确的标签');
+      this.$store.commit('createTag',tag)
     }else {
       // 将tag存入到localStorage中
       this.$store.commit('createTag',tag)
