@@ -2,6 +2,7 @@
   <div class="xxx">
     <Layout>
       <Tabs :dataSource="typeList" classfix="type" :value.sync="type"></Tabs>
+      <Chart :options="x"></Chart>
       <ol v-if="recordList.length>0">
         <li v-for="(group,index) in groupedList" :key="index">
           <h2 class="title">
@@ -30,9 +31,11 @@ import Tabs from '@/components/Money/Tabs.vue'
 import intervalList from '@/constants/intervalList'
 import typeList from '@/constants/typeList'
 import dayjs from 'dayjs'
+import Chart from '@/components/Chart.vue'
+
 @Component({
   components:{
-    Tabs
+    Tabs, Chart
   }
 })
 export default class Statistics extends Vue{
@@ -104,6 +107,25 @@ export default class Statistics extends Vue{
     // }
     // return hashTab
   }
+  get x() {
+  
+    return {
+    xAxis: {
+        type: 'category',
+        data: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
+    },
+    yAxis: {
+        type: 'value'
+    },
+    series: [{
+        data: [150, 230, 224, 218, 135, 147, 260],
+        type: 'line'
+    }],
+    tooltip:{
+        show: true
+    }
+};
+  }
   type = '-'
   intervalList = intervalList
   typeList = typeList
@@ -143,4 +165,5 @@ export default class Statistics extends Vue{
 .total {
   margin-left: auto;
 }
+
 </style>
