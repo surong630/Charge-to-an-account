@@ -7,7 +7,6 @@
         :key="item.id"
         @click="toggle(item)"
         :class="{actived:currentList.indexOf(item.name) >=0, tag: true}">
-          <Icon name="card"></Icon>
           <span>
             {{item.name}}
           </span>
@@ -31,7 +30,6 @@
     currentList: string[] = [];
     // 是否选中标签
     toggle(item: {id: string; name: string}) {
-      console.log(this.tagList);
       
       const index = this.currentList.indexOf(item.name);
       if(index<0) {
@@ -39,7 +37,6 @@
       }else {
         this.currentList.splice(index, 1)
       }
-      console.log(this.currentList);
       this.$emit('check', this.currentList)
     }
 

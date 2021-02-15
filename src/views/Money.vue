@@ -3,7 +3,8 @@
   <Layout classFix="money">
     <number :number.sync="source.num" @update:number="onnumberChange"></number>
     <div class="formNotes">
-    <Notes name="备注" palceholder="在这里添加备注" :value="source.notes" @update:value="onvalueChange"></Notes>
+    <Notes type="text" name="备注" palceholder="在这里添加备注" :value="source.notes" @update:value="onvalueChange"></Notes>
+    <Notes type="date" name="日期"  :value="source.data" @update:value="ondateChange"></Notes>
     </div>
     <Tags @check='check'></Tags>
     <Tabs :dataSource="typeList" :value.sync="source.type"></Tabs>  
@@ -18,6 +19,8 @@ import Number from '@/components/Money/Number.vue';
 import Tags from '@/components/Money/Tags.vue';
 import Tabs from '@/components/Money/Tabs.vue';
 import typeList from '@/constants/typeList'
+import dayjs from 'dayjs'
+
 type Source = {
   tagsList: string[];
   type: string;
@@ -29,7 +32,7 @@ type Source = {
 @Component({ components:{
   Notes, Number, Tags, Tabs
 }
- })
+})
 
 export default class Money extends Vue{
   typeList = typeList
@@ -41,13 +44,16 @@ export default class Money extends Vue{
     type: '-',
     num: 0,
     notes: '',
-    data: new Date().toISOString()
+    data: dayjs(new Date()).format('YYYY-MM-DD')
   }
   beforeCreate() {
     this.$store.commit('fetchSource')
   }
   onvalueChange(val: string) {
     this.source.notes = val
+  }
+  ondateChange(val: string) {
+    this.source.data = val
   }
   onnumberChange() {
     if(this.source.tagsList.length ===0) {

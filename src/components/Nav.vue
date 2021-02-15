@@ -1,13 +1,13 @@
 <template>
 <div>
-  <transition name="fade">
+  <!-- <transition name="fade">
     <div v-if="isShow" class="screen">
       <Money></Money>
       <span class="close" @click="close">
         *
       </span>
     </div>
-  </transition>
+  </transition> -->
   <div class="nav" v-if="!isShow">
     <router-link class="item" to="/Label" active-class="selected">
       <Icon name="label" />
@@ -21,10 +21,10 @@
       <Icon name="statistics" />
       明细</router-link
     >
-    <div class="item" @click="hover">
+    <!-- <div class="item" @click="hover">
       <Icon name="statistics" />
       记账
-    </div>
+    </div> -->
   </div>
 </div>
 </template>

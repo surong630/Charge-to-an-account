@@ -3,7 +3,7 @@
     <label class="notes">
       <span class="name">{{name}}</span>
       <input 
-      type="text" 
+      :type="type" 
       placeholder="请在这里输入"
       :value="value"
       @input="onValueChanged($event.target.value)"
@@ -19,6 +19,7 @@
     @Prop() value!: string;
     @Prop() name!: string;
     @Prop() placeholder!: string;
+    @Prop() type!: string;
     // 监听值变化 传回去
     onValueChanged(value: string) {
       this.$emit('update:value', value);

@@ -42,7 +42,6 @@ const store =  new Vuex.Store({
     },
     // 创建标签
     createTag(state,name: string){
-      console.log('createTag');
       const id = createId().toString()
       const names = state.tagList.map(i => {
         return i.name

@@ -19,7 +19,7 @@
           </ol>
         </li>
       </ol>
-      <div v-else style="text-align: center;">目前没有相关记录</div>
+      <div v-else style="text-align: center;">目前没有相关记录,快去记一笔吧</div>
     </Layout>
   </div>
 </template>
@@ -86,7 +86,6 @@ export default class Statistics extends Vue{
       group.total = group.items.reduce((res,sum) => {
         return res + sum.num
       },0)
-      console.log(group);
     })
     return result
     
