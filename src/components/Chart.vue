@@ -24,6 +24,6 @@
 <style lang="scss" scoped>
 .wrapper {
   height: 100%;
-  width: 100%;  
+  width: 340%;
 }
 </style>

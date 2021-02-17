@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <div id="app">
+    <button @click="toggle">toggle</button>
+    {{show}}
+
+    <test :show="show">
+    </test>
+  </div>
+  <script src="https://cdn.bootcdn.net/ajax/libs/vue/2.6.0/vue.min.js"></script>
+  <script>
+    Vue.component('test',{
+      props: ['show'],
+
+      render(createElement) {
+        var imgsrc;
+        debugger;
+        if(this.show) {
+          imgsrc = './src/assets/logo.png'
+        }else {
+          imgsrc = 'www.qq.com'
+        }
+        return createElement('img',{
+          attrs:{
+            src: imgsrc
+          }
+        })
+      }
+    })
+    new Vue({
+      el:'#app',
+      data(){
+        return {
+          name: '这是从父组件传过来的玩意',
+          bus: new Vue(),
+          show: true
+         }
+      },
+      methods: {
+        toggle() {
+          this.show  = !this.show
+        }
+      }
+    })
+  </script>
+</body>
+</html>

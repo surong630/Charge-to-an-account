@@ -2,7 +2,9 @@
   <div class="xxx">
     <Layout>
       <Tabs :dataSource="typeList" classfix="type" :value.sync="type"></Tabs>
-      <Chart :options="x"></Chart>
+      <div class="chart-wrapper" ref="chartWrapper">
+        <Chart class="chart" :options="x"></Chart>
+      </div>
       <ol v-if="recordList.length>0">
         <li v-for="(group,index) in groupedList" :key="index">
           <h2 class="title">
@@ -41,6 +43,9 @@ import Chart from '@/components/Chart.vue'
 export default class Statistics extends Vue{
   created() {
     this.$store.commit('fetchSource')
+  }
+  mounted() {
+    (this.$refs.chartWrapper as HTMLDivElement).scrollLeft = 9999
   }
   beautify(string: string) {
     if(dayjs(string).isSame(new Date(), 'day')) {
@@ -108,21 +113,57 @@ export default class Statistics extends Vue{
     // return hashTab
   }
   get x() {
-  
     return {
+    grid: {
+      left: 0,
+      right: 0
+    },
     xAxis: {
         type: 'category',
-        data: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
+        data: [
+          '1', '2', '3', '4', '5', '6', '7',
+          '8', '9', '10', '11', '12', '13', '14',
+          '15', '16', '17', '18', '19', '20', '21',
+           '22', '23', '24', '25', '26', '27','28','29','30'
+          ],
+          axisTick:{
+            show: false
+          },
+        axisLine: {
+          lineStyle:{
+            color: '#666'
+          }
+        }
     },
     yAxis: {
         type: 'value'
     },
     series: [{
-        data: [150, 230, 224, 218, 135, 147, 260],
-        type: 'line'
+        symbolSize:12,
+        itemStyle:{
+          color: '#666',
+          borderColor: '#666',
+          borderWidth: 1
+        },
+
+        symbol: 'circle',
+        data: [
+          150, 230, 224, 218, 135, 147, 260,
+          150, 230, 224, 218, 135, 147, 260,
+          150, 230, 224, 218, 135, 147, 260,
+          150, 230, 224, 218, 135, 147, 260,
+          10, 0
+          ],
+        type: 'line',
     }],
     tooltip:{
-        show: true
+        show: true,
+        formatter: '{c}',
+        position: 'top',
+        backgroundColor: '#666',
+        textStyle:{
+          color: 'white'
+        }
     }
 };
   }
@@ -165,5 +206,12 @@ export default class Statistics extends Vue{
 .total {
   margin-left: auto;
 }
-
+.chart-wrapper {
+  overflow: scroll;
+  &::-webkit-scrollbar {display:none}
+}
+.chart {
+  width: 430%;
+  height: 300px;
+}
 </style>
