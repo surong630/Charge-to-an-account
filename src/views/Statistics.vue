@@ -3,7 +3,7 @@
     <Layout>
       <Tabs :dataSource="typeList" classfix="type" :value.sync="type"></Tabs>
       <div class="chart-wrapper" ref="chartWrapper">
-        <Chart class="chart" :options="x"></Chart>
+        <Chart class="chart" :options="chartOptions"></Chart>
       </div>
       <ol v-if="recordList.length>0">
         <li v-for="(group,index) in groupedList" :key="index">
@@ -113,7 +113,7 @@ export default class Statistics extends Vue{
     // }
     // return hashTab
   }
-  get day() {
+  get keyValuesList() {
 // 获取当前日期
     const today = new Date()
     // 创建数组
@@ -128,14 +128,14 @@ export default class Statistics extends Vue{
       })
       // 将这一项推到array数组
       array.push({
-        date: dateString, value: found?found.num:0
+        key: dateString, value: found?found.num:0
       })
     }
     console.log(array);
     array.sort((a,b) => {
-      if(a > b) {
+      if(a.key > b.key) {
         return 1
-      }else if( a === b) {
+      }else if( a.key === b.key) {
         return 0
       }else {
         return -1
@@ -143,11 +143,9 @@ export default class Statistics extends Vue{
     })
     return array
   }
-  get x() {
-    
-    const key = this.day.map(i => i.date)
-    const values = this.day.map(i => i.value)
-    
+  get chartOptions() {
+    const keys = this.keyValuesList.map(i => i.key)
+    const values = this.keyValuesList.map(i => i.value)
     return {
     grid: {
       left: 0,
@@ -155,7 +153,7 @@ export default class Statistics extends Vue{
     },
     xAxis: {
         type: 'category',
-        data: key,
+        data: keys,
           axisTick:{
             show: false
           },
