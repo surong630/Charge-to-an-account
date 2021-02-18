@@ -33,8 +33,9 @@ import Tabs from '@/components/Money/Tabs.vue'
 import intervalList from '@/constants/intervalList'
 import typeList from '@/constants/typeList'
 import dayjs from 'dayjs'
+import day from 'dayjs'
 import Chart from '@/components/Chart.vue'
-
+import _lodash from 'lodash';
 @Component({
   components:{
     Tabs, Chart
@@ -45,14 +46,15 @@ export default class Statistics extends Vue{
     this.$store.commit('fetchSource')
   }
   mounted() {
-    (this.$refs.chartWrapper as HTMLDivElement).scrollLeft = 9999
+    const div = this.$refs.chartWrapper as HTMLDivElement
+    div.scrollLeft = div.scrollWidth
   }
   beautify(string: string) {
     if(dayjs(string).isSame(new Date(), 'day')) {
       return '今天'
     }else if(dayjs(string).isSame(dayjs().subtract(1, 'day'), 'day')) {
       return '昨天'
-    }else if(dayjs(string).isSame(dayjs().subtract(2,'day'), 'day')) {
+    }else if(dayjs(string).isSame(dayjs().subtract(2, 'day'), 'day')) {
       return '前天'
     }else {
       return dayjs(string).format('YYYY-M-DD')
@@ -96,7 +98,6 @@ export default class Statistics extends Vue{
       },0)
     })
     return result
-    
     // // 声明hashTab对象中key后的值
     //  // 定义的是对象的key : value
     // const hashTab:{[key:string]: {title:string,items:Source[]}} = {}
@@ -112,7 +113,41 @@ export default class Statistics extends Vue{
     // }
     // return hashTab
   }
+  get day() {
+// 获取当前日期
+    const today = new Date()
+    // 创建数组
+    const array = []
+    // 遍历 获取天数
+    for(let i =1;i<=29;i++) {
+      // 将现在的日期跟前i做减法, 等于当前日期的前i天 然后转换成YYYY-MM-DD
+      const dateString = day(today).subtract(i, 'day').format('YYYY-MM-DD')
+      // 找到recordList中data和当前dateString相等的数据
+      const found = _lodash.find(this.recordList,{
+        data: dateString
+      })
+      // 将这一项推到array数组
+      array.push({
+        date: dateString, value: found?found.num:0
+      })
+    }
+    console.log(array);
+    array.sort((a,b) => {
+      if(a > b) {
+        return 1
+      }else if( a === b) {
+        return 0
+      }else {
+        return -1
+      }
+    })
+    return array
+  }
   get x() {
+    
+    const key = this.day.map(i => i.date)
+    const values = this.day.map(i => i.value)
+    
     return {
     grid: {
       left: 0,
@@ -120,18 +155,18 @@ export default class Statistics extends Vue{
     },
     xAxis: {
         type: 'category',
-        data: [
-          '1', '2', '3', '4', '5', '6', '7',
-          '8', '9', '10', '11', '12', '13', '14',
-          '15', '16', '17', '18', '19', '20', '21',
-           '22', '23', '24', '25', '26', '27','28','29','30'
-          ],
+        data: key,
           axisTick:{
             show: false
           },
         axisLine: {
           lineStyle:{
             color: '#666'
+          }
+        },
+        axisLabel: {
+          formatter: function(value: string) {
+            return value.substr(5)
           }
         }
     },
@@ -145,15 +180,8 @@ export default class Statistics extends Vue{
           borderColor: '#666',
           borderWidth: 1
         },
-
         symbol: 'circle',
-        data: [
-          150, 230, 224, 218, 135, 147, 260,
-          150, 230, 224, 218, 135, 147, 260,
-          150, 230, 224, 218, 135, 147, 260,
-          150, 230, 224, 218, 135, 147, 260,
-          10, 0
-          ],
+        data: values,
         type: 'line',
     }],
     tooltip:{
