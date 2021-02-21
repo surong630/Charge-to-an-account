@@ -4,19 +4,24 @@
 </template>
 
 <script lang="ts">
-  import {Vue, Component,Prop} from 'vue-property-decorator'
-  const echarts = require('echarts')
+  import {Vue, Component, Prop, Watch} from 'vue-property-decorator'
+  import echarts from 'echarts'
   
   @Component
   export default class Chart extends Vue{
-    @Prop() options:any;
+    @Prop() options: any;
+    chart: any;
     mounted() {
       if(this.options === undefined) {
         console.log('options为空');
         return 
       }
-      const chart = echarts.init(document.querySelector('.wrapper'))
-      chart.setOption(this.options!)
+      this.chart = echarts.init(document.querySelector('.wrapper') as HTMLElement)
+      this.chart.setOption(this.options!)
+    }
+    @Watch('options')
+    optionsChange(newValue: any) {
+      this.chart.setOption(newValue)
     }
   }
 </script>

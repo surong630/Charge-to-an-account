@@ -35,7 +35,8 @@ import typeList from '@/constants/typeList'
 import dayjs from 'dayjs'
 import day from 'dayjs'
 import Chart from '@/components/Chart.vue'
-import _lodash from 'lodash';
+import _lodash from 'lodash'
+
 @Component({
   components:{
     Tabs, Chart
@@ -123,12 +124,12 @@ export default class Statistics extends Vue{
       // 将现在的日期跟前i做减法, 等于当前日期的前i天 然后转换成YYYY-MM-DD
       const dateString = day(today).subtract(i, 'day').format('YYYY-MM-DD')
       // 找到recordList中data和当前dateString相等的数据
-      const found = _lodash.find(this.recordList,{
-        data: dateString
+      const found = _lodash.find(this.groupedList,{
+        title: dateString
       })
       // 将这一项推到array数组
       array.push({
-        key: dateString, value: found?found.num:0
+        key: dateString, value: found?found.total:0
       })
     }
     console.log(array);
