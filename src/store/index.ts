@@ -20,7 +20,7 @@ const store =  new Vuex.Store({
     fetchSource(state) {
       state.recordList = JSON.parse(localStorage.getItem('recordList') || '[]')
     },
-    // 创建标签
+    // 创建数据
     createSource: (state, source: Source) => {
       const newSource = clone(source)
       state.recordList.push(newSource)

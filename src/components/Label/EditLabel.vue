@@ -15,7 +15,7 @@
 </template>
 
 <script lang="ts">
-  import {Vue, Component} from 'vue-property-decorator'
+  import { Vue, Component } from 'vue-property-decorator'
   import TagButton from '@/components/TagButton.vue'
   import Notes from '@/components/Money/Notes.vue'
   @Component({

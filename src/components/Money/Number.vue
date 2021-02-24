@@ -23,7 +23,7 @@
 
 <script lang="ts">
   import Vue from 'vue'
-  import {Component, Prop} from 'vue-property-decorator'
+  import { Component, Prop } from 'vue-property-decorator'
   @Component // 装饰器
   export default class NumberPad extends Vue{
     @Prop(Number) number?: number;

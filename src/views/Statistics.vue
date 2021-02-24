@@ -120,7 +120,7 @@ export default class Statistics extends Vue{
     // 创建数组
     const array = []
     // 遍历 获取天数
-    for(let i =1;i<=29;i++) {
+    for(let i =0;i<=29;i++) {
       // 将现在的日期跟前i做减法, 等于当前日期的前i天 然后转换成YYYY-MM-DD
       const dateString = day(today).subtract(i, 'day').format('YYYY-MM-DD')
       // 找到recordList中data和当前dateString相等的数据
@@ -132,7 +132,6 @@ export default class Statistics extends Vue{
         key: dateString, value: found?found.total:0
       })
     }
-    console.log(array);
     array.sort((a,b) => {
       if(a.key > b.key) {
         return 1
